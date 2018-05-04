@@ -13,8 +13,8 @@ public class TestDataSource {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringRootConfig.class);
 
-//        DataSource dataSource = context.getBean(DataSource.class);
-//
+        DataSource dataSource = context.getBean(DataSource.class);
+
 //        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 //
 //        String sql = "INSERT INTO user  ('name', 'phone', 'email', 'address', 'loginName', 'password') VALUES (?,?,?,?,?,?)";

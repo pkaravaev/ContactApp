@@ -10,7 +10,7 @@ public class User {
 
     private String email;
 
-    private String addfess;
+    private String address;
 
     private String loginname;
 
@@ -53,12 +53,12 @@ public class User {
         this.email = email;
     }
 
-    public String getAddfess() {
-        return addfess;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddfess(String addfess) {
-        this.addfess = addfess;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getLoginname() {
