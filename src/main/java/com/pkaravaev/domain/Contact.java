@@ -63,15 +63,15 @@ public class Contact {
         this.address = address;
     }
 
-    public String getEwmark() {
-        return ewmark;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setEwmark(String ewmark) {
-        this.ewmark = ewmark;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     private String address;
 
-    private String ewmark;
+    private String remark;
 }

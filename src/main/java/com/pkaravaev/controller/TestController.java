@@ -1,6 +1,8 @@
 package com.pkaravaev.controller;
 
 
+import com.pkaravaev.dao.UserDAO;
+import com.pkaravaev.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -14,24 +16,14 @@ public class TestController {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    UserDAO userDAO;
+
     @RequestMapping("/test/helloworld")
     public String helloWorld(){
 
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
-        String sql = "INSERT INTO user (name, phone, email, address, loginName, password) " +
-                "VALUES (?,?,?,?,?,?)";
-
-        Object[] param = new Object[]{"Pavel", "9999999", " mail@mail.ru", "Moscow", "pavel1990", "q1w2e3r4t5"};
-
-        jdbcTemplate.update(sql, param);
-
-        System.out.println("-----------SQL executed -----------");
-
-
-
-
+       userDAO.delete(12);
 
         return "hello";
     }
