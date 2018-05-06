@@ -67,6 +67,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     public void delete(User u) {
+
         String sql = "DELETE FROM user WHERE userid=? ";
         getJdbcTemplate().update(sql, u.getUserid());
     }
@@ -99,7 +100,6 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
         String sql = "SELECT userid, name, phone, email, address, loginName, role, loginStatus " +
                 "FROM user WHERE " + propName+"=?";
-
         return getJdbcTemplate().query(sql, new UserRowMapper(), propValue);
     }
 
