@@ -16,7 +16,7 @@ public interface UserDAO {
 
     public User findById(Integer userid);
 
-    public List<User> findAll(Integer userid);
+    public List<User> findAll();
 
     public List<User> findByProperty(String  propName, Object propValue);
 }

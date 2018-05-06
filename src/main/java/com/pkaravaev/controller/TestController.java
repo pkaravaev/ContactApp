@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Controller
 public class TestController {
@@ -23,7 +24,7 @@ public class TestController {
     public String helloWorld(){
 
 
-       userDAO.delete(12);
+        List<User> all = userDAO.findAll();
 
         return "hello";
     }

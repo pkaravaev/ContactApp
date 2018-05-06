@@ -2,6 +2,8 @@ package com.pkaravaev.dao;
 
 
 import com.pkaravaev.domain.User;
+import com.pkaravaev.rm.ContactRowMapper;
+import com.pkaravaev.rm.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -66,31 +68,39 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     @Override
     public void delete(User u) {
         String sql = "DELETE FROM user WHERE userid=? ";
-        getJdbcTemplate().update(sql,u.getUserid());
+        getJdbcTemplate().update(sql, u.getUserid());
     }
 
     @Override
     public void delete(Integer userid) {
 
         String sql = "DELETE FROM user WHERE userid=? ";
-        getJdbcTemplate().update(sql,userid);
+        getJdbcTemplate().update(sql, userid);
     }
 
     @Override
     public User findById(Integer userid) {
-        return null;
+
+        String sql = "SELECT userid, name, phone, email, address, loginName, role, loginStatus FROM user WHERE userid=?";
+        User user = getJdbcTemplate().queryForObject(sql, new UserRowMapper(), userid);
+        return user;
     }
 
     @Override
-    public List<User> findAll(Integer userid) {
+    public List<User> findAll() {
 
-        String sql = "";
-        return null;
+        String sql = "SELECT userid, name, phone, email, address, loginName, role, loginStatus FROM user";
+        List<User> users = getJdbcTemplate().query(sql, new UserRowMapper());
+        return users;
     }
 
     @Override
     public List<User> findByProperty(String propName, Object propValue) {
-        return null;
+
+        String sql = "SELECT userid, name, phone, email, address, loginName, role, loginStatus " +
+                "FROM user WHERE " + propName+"=?";
+
+        return getJdbcTemplate().query(sql, new UserRowMapper(), propValue);
     }
 
 
