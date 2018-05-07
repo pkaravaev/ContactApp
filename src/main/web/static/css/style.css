@@ -3,7 +3,7 @@ body {
 
     font-family: Arial, Helvetica, Geneva, sans-serif;
     font-size: 18px;
-    color: #FF0000;
+    color: darkblue;
 
 }
 
@@ -15,6 +15,11 @@ body {
 .success {
 
     color: #0000FF;
+}
+
+.xxx {
+
+
 }
 
 

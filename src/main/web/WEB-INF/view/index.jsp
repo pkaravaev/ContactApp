@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>User Login- Contact Application</title>
@@ -24,27 +27,48 @@
 
     <tr>
         <td height="100px">
-
-          <jsp:include page="include/header.jsp"/>
+            <jsp:include page="include/header.jsp"/>
         </td>
     </tr>
 
     <tr>
         <td height="25px">
-           <jsp:include page="include/menu.jsp"/>
-
+            <jsp:include page="include/menu.jsp"/>
         </td>
     </tr>
 
     <tr>
         <td height="350px" valign="top">
-           <h1>User Login</h1>
+            <h3>User Login</h3>
+            <c:if test="${err!=null}">
+                <p class="error">${err}</p>
+            </c:if>
+            <s:url var="url_login" value="/login"/>
+            <f:form action="${url_login}" modelAttribute="command">
+                <table border="1">
+                    <tr>
+                        <td>UserName</td>
+                        <td><f:input path="loginName"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><f:password path="password"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right">
+                            <button>Login</button>
+                            <br>
+                            <a href="#">New User Registration</a>
+                        </td>
+                    </tr>
+                </table>
+            </f:form>
         </td>
     </tr>
 
     <tr>
         <td height="35px">
-           <jsp:include page="include/footer.jsp"/>
+            <jsp:include page="include/footer.jsp"/>
         </td>
     </tr>
 

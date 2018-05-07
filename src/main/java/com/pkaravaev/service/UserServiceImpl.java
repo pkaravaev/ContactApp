@@ -27,7 +27,6 @@ public class UserServiceImpl extends BaseDAO implements UserService {
 
     @Override
     public User login(String loginName, String password) throws UserBlockedException {
-
         String sql = "SELECT userid, name, phone, email, address, role, loginStatus, loginName FROM user WHERE loginName=:ln AND PASSWORD=:pw";
         Map m = new HashMap();
         m.put("ln", loginName);
@@ -39,12 +38,9 @@ public class UserServiceImpl extends BaseDAO implements UserService {
             } else {
                 return user;
             }
-
         } catch (EmptyResultDataAccessException ex) {
-
             return null;
         }
-
     }
 
     @Override

@@ -16,9 +16,9 @@ public class User {
 
     private String password;
 
-    private int role;
+    private Integer role;
 
-    private int loginStatus;
+    private Integer loginStatus;
 
     public User() {
     }
@@ -79,7 +79,7 @@ public class User {
         this.password = password;
     }
 
-    public int getRole() {
+    public Integer getRole() {
         return role;
     }
 
@@ -87,7 +87,7 @@ public class User {
         this.role = role;
     }
 
-    public int getLoginStatus() {
+    public Integer getLoginStatus() {
         return loginStatus;
     }
 
