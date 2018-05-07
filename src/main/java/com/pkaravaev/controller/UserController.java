@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 
@@ -24,8 +26,14 @@ public class UserController {
         return "index";
     }
 
+    @RequestMapping(value = {"/logout"})
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:index?act=lo";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String handleLogin(@ModelAttribute("command") LoginCommand cmd, Model model) {
+    public String handleLogin(@ModelAttribute("command") LoginCommand cmd, Model model, HttpSession session) {
         try {
             User loggedUser = userService.login(cmd.getLoginName(), cmd.getPassword());
 
@@ -34,14 +42,16 @@ public class UserController {
                 return "index";
             } else {
                 if (loggedUser.getRole().equals(UserService.ROLE_USER)) {
+                    addUserInSession(loggedUser, session);
                     model.addAttribute("user", loggedUser);
+
                     return "redirect:user/dashboard";
-                }
-                else if(loggedUser.getRole().equals(UserService.ROLE_ADMIN)){
+                } else if (loggedUser.getRole().equals(UserService.ROLE_ADMIN)) {
+                    addUserInSession(loggedUser, session);
                     model.addAttribute("user", loggedUser);
+
                     return "redirect:admin/dashboard";
-                }
-                else {
+                } else {
                     model.addAttribute("err", "Invalid User ROLE");
                     return "index";
                 }
@@ -60,6 +70,12 @@ public class UserController {
     @RequestMapping(value = {"/admin/dashboard"})
     public String adminDashboard() {
         return "dashboard_admin";
+    }
+
+    private void addUserInSession(User user, HttpSession session) {
+        session.setAttribute("user", user);
+        session.setAttribute("userid", user.getUserid());
+        session.setAttribute("role", user.getRole());
     }
 
 }
