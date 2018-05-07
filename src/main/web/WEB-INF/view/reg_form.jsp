@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: karav
-  Date: 28.04.2018
-  Time: 19:32
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
@@ -12,7 +5,7 @@
 
 <html>
 <head>
-    <title>User Login- Contact Application</title>
+    <title>User Registration- Contact Application</title>
     <s:url var="url_css" value="../../static/css/style.css"/>
     <link href="${url_css}" rel="stylesheet" type="text/css">
 
@@ -38,37 +31,42 @@
 
     <tr>
         <td height="350px" valign="top">
-            <h3>User Login</h3>
+            <h3>User Register</h3>
+
             <c:if test="${err!=null}">
                 <p class="error">${err}</p>
             </c:if>
 
-            <c:if test="${param.act eq 'lo'}">
-                <p class="success">Logout Successfully! Thanks for using contact application.</p>
-            </c:if>
-
-            <c:if test="${param.act eq 'reg'}">
-                <p class="success">User Registered Successfully.</p>
-            </c:if>
-
-
-
-            <s:url var="url_login" value="/login"/>
-            <f:form action="${url_login}" modelAttribute="command">
+            <s:url var="url_reg" value="/register"/>
+            <f:form action="${url_reg}" modelAttribute="command">
                 <table border="1">
                     <tr>
+                        <td>Name</td>
+                        <td><f:input path="user.name"/></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td><f:input path="user.phone"/></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><f:input path="user.email"/></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><f:textarea path="user.address"/></td>
+                    </tr>
+                    <tr>
                         <td>UserName</td>
-                        <td><f:input path="loginName"/></td>
+                        <td><f:input path="user.loginname"/></td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><f:password path="password"/></td>
+                        <td><f:password path="user.password"/></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="right">
-                            <button>Login</button>
-                            <br>
-                            <a href="#">New User Registration</a>
+                            <button>Submit</button>
                         </td>
                     </tr>
                 </table>

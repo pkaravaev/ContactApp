@@ -2,6 +2,7 @@ package com.pkaravaev.controller;
 
 
 import com.pkaravaev.command.LoginCommand;
+import com.pkaravaev.command.UserCommand;
 import com.pkaravaev.domain.User;
 import com.pkaravaev.exception.UserBlockedException;
 import com.pkaravaev.service.UserService;
@@ -71,6 +72,25 @@ public class UserController {
     public String adminDashboard() {
         return "dashboard_admin";
     }
+
+    @RequestMapping(value = "/reg_form")
+    public String registrationForm(Model model) {
+        UserCommand cmd = new UserCommand();
+
+        model.addAttribute("command", cmd);
+        return "reg_form";
+    }
+
+    @RequestMapping(value = "/register")
+    public String registerUser(@ModelAttribute("command") UserCommand cmd, Model model) {
+        User user = cmd.getUser();
+        user.setRole(UserService.ROLE_USER);
+        user.setLoginStatus(UserService.LOGIN_STATUS_ACTIVE);
+        userService.register(user);
+        model.addAttribute("command", cmd);
+        return "redirect:index?act=reg";
+    }
+
 
     private void addUserInSession(User user, HttpSession session) {
         session.setAttribute("user", user);

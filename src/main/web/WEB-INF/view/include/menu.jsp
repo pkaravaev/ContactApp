@@ -2,10 +2,11 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 
 <s:url var="url_logout" value="/logout"/>
+<s:url var="url_register" value="/reg_form"/>
 
 <c:if test="${sessionScope.userid==null}">
 <%--User is not yet logged in : Guest menu--%>
-    <a href="#">Home</a> | <a href="#">Login</a> | <a href="#">Register</a> | <a href="#">About</a> | <a href="#">Help</a>
+    <a href="#">Home</a> | <a href="#">Login</a> | <a href="${url_register}">Register</a> | <a href="#">About</a> | <a href="#">Help</a>
 </c:if>
 
 <c:if test="${sessionScope.userid!=null && sessionScope.role  == 1 }">
