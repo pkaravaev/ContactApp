@@ -18,6 +18,8 @@ public class User {
 
     private int role;
 
+    private int loginStatus;
+
     public User() {
     }
 
@@ -85,13 +87,13 @@ public class User {
         this.role = role;
     }
 
-    public int getLoginstatus() {
-        return loginstatus;
+    public int getLoginStatus() {
+        return loginStatus;
     }
 
-    public void setLoginstatus(int loginstatus) {
-        this.loginstatus = loginstatus;
+    public void setLoginStatus(int loginStatus) {
+        this.loginStatus = loginStatus;
     }
 
-    private int loginstatus;
+
 }

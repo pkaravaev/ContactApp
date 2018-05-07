@@ -1,0 +1,1 @@
+&COPY;[2018] Copirights by <a target="_blank" href="https://www.google.com/">pKaravaev </a>

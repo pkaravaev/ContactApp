@@ -2,9 +2,7 @@ package com.pkaravaev.dao;
 
 
 import com.pkaravaev.domain.User;
-import com.pkaravaev.rm.ContactRowMapper;
 import com.pkaravaev.rm.UserRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -33,7 +31,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
         m.put("loginName", u.getLoginname());
         m.put("password", u.getPassword());
         m.put("role", u.getRole());
-        m.put("loginStatus", u.getLoginstatus());
+        m.put("loginStatus", u.getLoginStatus());
 
         KeyHolder kh = new GeneratedKeyHolder();
         SqlParameterSource ps = new MapSqlParameterSource(m);
@@ -59,7 +57,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
         m.put("email", u.getEmail());
         m.put("address", u.getAddress());
         m.put("role", u.getRole());
-        m.put("loginStatus", u.getLoginstatus());
+        m.put("loginStatus", u.getLoginStatus());
         m.put("userid", u.getUserid());
         getNamedParameterJdbcTemplate().update(sql, m);
 

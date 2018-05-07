@@ -19,7 +19,7 @@ public class UserRowMapper implements RowMapper<User> {
         u.setAddress(rs.getString("address"));
         u.setLoginname(rs.getString("loginName"));
         u.setRole(rs.getInt("role"));
-        u.setLoginstatus(rs.getInt("loginStatus"));
+        u.setLoginStatus(rs.getInt("loginStatus"));
 
         return u;
     }

@@ -9,7 +9,7 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>User Login- Contact Application</title>
+    <title>User Dashboard- Contact Application</title>
 
     <s:url var="url_css" value="../../static/css/style.css"/>
     <link href="${url_css}" rel="stylesheet" type="text/css">
@@ -25,26 +25,26 @@
     <tr>
         <td height="100px">
 
-          <jsp:include page="include/header.jsp"/>
+            <jsp:include page="include/header.jsp"/>
         </td>
     </tr>
 
     <tr>
         <td height="25px">
-           <jsp:include page="include/menu.jsp"/>
+            <jsp:include page="include/menu.jsp"/>
 
         </td>
     </tr>
 
     <tr>
         <td height="350px" valign="top">
-           <h1>User Login</h1>
+            <h1>User Dashboard</h1>
         </td>
     </tr>
 
     <tr>
         <td height="35px">
-           <jsp:include page="include/footer.jsp"/>
+            <jsp:include page="include/footer.jsp"/>
         </td>
     </tr>
 

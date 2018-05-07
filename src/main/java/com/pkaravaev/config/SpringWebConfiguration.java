@@ -28,7 +28,7 @@ public class SpringWebConfiguration extends  WebMvcConfigurerAdapter  {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        super.addResourceHandlers(registry);
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
     }
 
     @Bean
