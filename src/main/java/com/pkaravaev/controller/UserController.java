@@ -85,7 +85,6 @@ public class UserController {
     public String registerUser(@ModelAttribute("command") UserCommand cmd, Model model) {
 
         try {
-
             User user = cmd.getUser();
             user.setRole(UserService.ROLE_USER);
             user.setLoginStatus(UserService.LOGIN_STATUS_ACTIVE);
