@@ -10,10 +10,8 @@
 <html>
 <head>
     <title>User Dashboard- Contact Application</title>
-
     <s:url var="url_css" value="../../static/css/style.css"/>
     <link href="${url_css}" rel="stylesheet" type="text/css">
-
 </head>
 
 <s:url var="url_bg" value="/static/image/bg.jpg"/>

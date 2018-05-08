@@ -17,6 +17,7 @@
 <c:if test="${sessionScope.userid!=null && sessionScope.role  == 2 }">
     <c:url var="url_home" value="/user/dashboard"/>
     <c:url var="url_cform" value="/user/contact_form"/>
+    <c:url var="url_clist" value="/user/clist"/>
     <%--General User is logged in : User Menu--%>
-    <a href="${url_home}">Home</a> | <a href="${url_cform}">Add Contact</a> | <a href="#">Contact List</a> | <a href="${url_logout}/>Logout</a>
+    <a href="${url_home}">Home</a> | <a href="${url_cform}">Add Contact</a> | <a href="${url_clist}">Contact List</a> | <a href="${url_logout}/>Logout</a>
 </c:if>
