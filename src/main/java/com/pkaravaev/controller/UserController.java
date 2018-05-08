@@ -7,6 +7,7 @@ import com.pkaravaev.domain.User;
 import com.pkaravaev.exception.UserBlockedException;
 import com.pkaravaev.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -76,26 +77,33 @@ public class UserController {
     @RequestMapping(value = "/reg_form")
     public String registrationForm(Model model) {
         UserCommand cmd = new UserCommand();
-
         model.addAttribute("command", cmd);
         return "reg_form";
     }
 
     @RequestMapping(value = "/register")
     public String registerUser(@ModelAttribute("command") UserCommand cmd, Model model) {
-        User user = cmd.getUser();
-        user.setRole(UserService.ROLE_USER);
-        user.setLoginStatus(UserService.LOGIN_STATUS_ACTIVE);
-        userService.register(user);
-        model.addAttribute("command", cmd);
-        return "redirect:index?act=reg";
+
+        try {
+
+            User user = cmd.getUser();
+            user.setRole(UserService.ROLE_USER);
+            user.setLoginStatus(UserService.LOGIN_STATUS_ACTIVE);
+            userService.register(user);
+            model.addAttribute("command", cmd);
+            return "redirect:index?act=reg";
+        } catch (DuplicateKeyException e) {
+            e.printStackTrace();
+            model.addAttribute("err", "Username is already registered.Please select another username");
+            return "reg_form";
+        }
     }
 
 
-    private void addUserInSession(User user, HttpSession session) {
-        session.setAttribute("user", user);
-        session.setAttribute("userid", user.getUserid());
-        session.setAttribute("role", user.getRole());
-    }
+        private void addUserInSession (User user, HttpSession session){
+            session.setAttribute("user", user);
+            session.setAttribute("userid", user.getUserid());
+            session.setAttribute("role", user.getRole());
+        }
 
-}
+    }
