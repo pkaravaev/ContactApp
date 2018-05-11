@@ -66,7 +66,6 @@ public class ContactController {
 
     @RequestMapping(value = "/user/contact_search")
     public String contactSearch(Model model, HttpSession session, @RequestParam("freeText") String freeText) {
-
         Integer userid = (Integer) session.getAttribute("userid");
         model.addAttribute("contactList", service.findUserContact(userid, freeText));
         return "clist";
@@ -84,5 +83,12 @@ public class ContactController {
         Contact c = service.findById(contactId);
         model.addAttribute("command", c);
         return "contact_form";
+    }
+
+
+    @RequestMapping(value = "/user/bulk_cdelete")
+    public String deleteBulkContact(@RequestParam("cid") Integer[] contactId) {
+        service.delete(contactId);
+        return "redirect:clist?act=del";
     }
 }

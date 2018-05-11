@@ -33,11 +33,9 @@ public class ContactServiceImpl extends BaseDAO implements ContactService {
 
     @Override
     public void delete(Integer[] contactIds) {
-
         String ids = StringUtil.toCommaSeparatesString(contactIds);
-        String sql = "DELETE FROM contact WHERE contactId IN("+ids+")";
-        getJdbcTemplate().update(sql, contactIds);
-
+        String sql = "DELETE FROM contact WHERE contact.contactid IN("+ids+")";
+        getJdbcTemplate().update(sql);
     }
 
     @Override
