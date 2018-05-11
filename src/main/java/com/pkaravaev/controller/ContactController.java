@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -25,17 +26,37 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/user/save_contact")
-    public String saveContact(@ModelAttribute("Command") Contact contact, HttpSession session, Model model) {
-        try {
-            contact.setUserid((Integer) session.getAttribute("userid"));
-            service.save(contact);
-            return "redirect:clist?act=sv";
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            model.addAttribute("command", contact);
-            model.addAttribute("err", "Failed to save contact");
-            return "contact_form";
-        }
+    public String saveOrUpdate(@ModelAttribute("Command") Contact contact, HttpSession session, Model model) {
+
+       Integer contactId = (Integer)session.getAttribute("aContactId");
+       if (contactId == null){
+           //save
+           try {
+               Integer userId = (Integer)session.getAttribute("userid");
+               contact.setUserid(userId);
+               service.save(contact);
+               return "redirect:clist?act=sv";
+           }
+           catch (Exception e){
+               e.printStackTrace();
+               model.addAttribute("err", "Failed to save contact");
+               return "contact_form";
+           }
+
+       } else {
+           //update
+           try {
+               contact.setContactid(contactId);
+               service.update(contact);
+               return "redirect:clist?act=ed";
+           }
+           catch (Exception e){
+               e.printStackTrace();
+               model.addAttribute("err", "Failed to Edit contact");
+               return "contact_form";
+           }
+       }
+
     }
 
     @RequestMapping(value = "/user/clist")
@@ -43,5 +64,19 @@ public class ContactController {
         List<Contact> list = service.findUserContact((Integer) session.getAttribute("userid"));
         model.addAttribute("contactList", list);
         return "clist";
+    }
+
+    @RequestMapping(value = "/user/del_contact")
+    public String deleteContact(@RequestParam("cid") Integer contactId) {
+        service.delete(contactId);
+        return "redirect:clist?act=del";
+    }
+
+    @RequestMapping(value = "/user/edit_contact")
+    public String prepareEditForm(@RequestParam("cid") Integer contactId, Model model, HttpSession session ) {
+        session.setAttribute("aContactId", contactId);
+        Contact c = service.findById(contactId);
+        model.addAttribute("command", c);
+        return "contact_form";
     }
 }

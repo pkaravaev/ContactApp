@@ -70,7 +70,7 @@ public class ContactDAOImpl extends BaseDAO implements ContactDAO {
 
     @Override
     public Contact findById(Integer contactid) {
-        String sql = "SELECT contactid, userid, name, phone, email, address, remark FROM contact WHERE contact=?";
+        String sql = "SELECT contactid, userid, name, phone, email, address, remark FROM contact WHERE contactid=?";
         return getJdbcTemplate().queryForObject(sql, new ContactRowMapper(), contactid);
     }
 

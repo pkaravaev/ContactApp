@@ -42,6 +42,10 @@
                 <p class="success">Contact Saved Successfully!!</p>
             </c:if>
 
+            <c:if test="${param.act eq 'del'}">
+                <p class="success">Contact Deleted Successfully!!</p>
+            </c:if>
+
             <table border="1" cellpadding="5">
                 <tr>
                     <th>SR</th>
@@ -59,6 +63,7 @@
                         <td align="center" colspan="8" class="error">No records Present</td>
                     </tr>
                 </c:if>
+
 
                 <c:forEach var="contact" items="${contactList}" varStatus="st">
                     <tr>

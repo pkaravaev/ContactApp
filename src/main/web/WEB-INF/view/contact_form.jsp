@@ -56,12 +56,10 @@
                         <td>Address</td>
                         <td><f:textarea path="address"/></td>
                     </tr>
-
                     <tr>
                         <td>Remark</td>
                         <td><f:textarea path="remark"/></td>
                     </tr>
-
                     <tr>
                         <td colspan="2" align="right">
                             <button>Save</button>

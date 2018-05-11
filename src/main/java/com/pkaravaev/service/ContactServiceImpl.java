@@ -52,4 +52,9 @@ public class ContactServiceImpl extends BaseDAO implements ContactService {
                 "OR  phone LIKE '%"+txt+"%' OR  email LIKE '%"+txt+"%' OR  remark LIKE '%"+txt+"%')";
         return getJdbcTemplate().query(sql, new ContactRowMapper(), userid);
     }
+
+    @Override
+    public Contact findById(Integer contactId) {
+       return contactDAO.findById(contactId);
+    }
 }
