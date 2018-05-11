@@ -65,7 +65,6 @@ public class ContactDAOImpl extends BaseDAO implements ContactDAO {
     public void delete(Integer contactid) {
         String sql = "DELETE FROM contact WHERE contactid=?";
         getJdbcTemplate().update(sql,contactid);
-
     }
 
     @Override
@@ -82,7 +81,6 @@ public class ContactDAOImpl extends BaseDAO implements ContactDAO {
 
     @Override
     public List<Contact> findByProperty(String propName, Object propValue) {
-
         String sql = "SELECT contactid, userid, name, phone, email, address, remark FROM contact WHERE "+propName + "=?";
         return getJdbcTemplate().query(sql, new ContactRowMapper(), propValue);
     }

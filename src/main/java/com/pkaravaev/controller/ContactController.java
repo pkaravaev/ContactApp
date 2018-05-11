@@ -28,34 +28,32 @@ public class ContactController {
     @RequestMapping(value = "/user/save_contact")
     public String saveOrUpdate(@ModelAttribute("Command") Contact contact, HttpSession session, Model model) {
 
-       Integer contactId = (Integer)session.getAttribute("aContactId");
-       if (contactId == null){
-           //save
-           try {
-               Integer userId = (Integer)session.getAttribute("userid");
-               contact.setUserid(userId);
-               service.save(contact);
-               return "redirect:clist?act=sv";
-           }
-           catch (Exception e){
-               e.printStackTrace();
-               model.addAttribute("err", "Failed to save contact");
-               return "contact_form";
-           }
+        Integer contactId = (Integer) session.getAttribute("aContactId");
+        if (contactId == null) {
+            //save
+            try {
+                Integer userId = (Integer) session.getAttribute("userid");
+                contact.setUserid(userId);
+                service.save(contact);
+                return "redirect:clist?act=sv";
+            } catch (Exception e) {
+                e.printStackTrace();
+                model.addAttribute("err", "Failed to save contact");
+                return "contact_form";
+            }
 
-       } else {
-           //update
-           try {
-               contact.setContactid(contactId);
-               service.update(contact);
-               return "redirect:clist?act=ed";
-           }
-           catch (Exception e){
-               e.printStackTrace();
-               model.addAttribute("err", "Failed to Edit contact");
-               return "contact_form";
-           }
-       }
+        } else {
+            //update
+            try {
+                contact.setContactid(contactId);
+                service.update(contact);
+                return "redirect:clist?act=ed";
+            } catch (Exception e) {
+                e.printStackTrace();
+                model.addAttribute("err", "Failed to Edit contact");
+                return "contact_form";
+            }
+        }
 
     }
 
@@ -66,6 +64,14 @@ public class ContactController {
         return "clist";
     }
 
+    @RequestMapping(value = "/user/contact_search")
+    public String contactSearch(Model model, HttpSession session, @RequestParam("freeText") String freeText) {
+
+        Integer userid = (Integer) session.getAttribute("userid");
+        model.addAttribute("contactList", service.findUserContact(userid, freeText));
+        return "clist";
+    }
+
     @RequestMapping(value = "/user/del_contact")
     public String deleteContact(@RequestParam("cid") Integer contactId) {
         service.delete(contactId);
@@ -73,7 +79,7 @@ public class ContactController {
     }
 
     @RequestMapping(value = "/user/edit_contact")
-    public String prepareEditForm(@RequestParam("cid") Integer contactId, Model model, HttpSession session ) {
+    public String prepareEditForm(@RequestParam("cid") Integer contactId, Model model, HttpSession session) {
         session.setAttribute("aContactId", contactId);
         Contact c = service.findById(contactId);
         model.addAttribute("command", c);
