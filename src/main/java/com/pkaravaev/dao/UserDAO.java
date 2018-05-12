@@ -2,6 +2,7 @@ package com.pkaravaev.dao;
 
 import com.pkaravaev.domain.User;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 public interface UserDAO {

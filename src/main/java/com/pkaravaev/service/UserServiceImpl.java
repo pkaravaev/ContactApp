@@ -45,7 +45,7 @@ public class UserServiceImpl extends BaseDAO implements UserService {
 
     @Override
     public List<User> getUserList() {
-        return null;
+        return userDAO.findByProperty("role", ROLE_USER);
     }
 
     @Override

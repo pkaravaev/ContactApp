@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -38,7 +39,6 @@ public class UserController {
     public String handleLogin(@ModelAttribute("command") LoginCommand cmd, Model model, HttpSession session) {
         try {
             User loggedUser = userService.login(cmd.getLoginName(), cmd.getPassword());
-
             if (loggedUser == null) {
                 model.addAttribute("err", "Login Failed Enter valid credentials.");
                 return "index";
@@ -74,6 +74,14 @@ public class UserController {
         return "dashboard_admin";
     }
 
+    @RequestMapping(value = {"/admin/users"})
+    public String getUserList(Model model) {
+
+        List<User> userList = userService.getUserList();
+        model.addAttribute("users", userService.getUserList());
+        return "users";
+    }
+
     @RequestMapping(value = "/reg_form")
     public String registrationForm(Model model) {
         UserCommand cmd = new UserCommand();
@@ -83,7 +91,6 @@ public class UserController {
 
     @RequestMapping(value = "/register")
     public String registerUser(@ModelAttribute("command") UserCommand cmd, Model model) {
-
         try {
             User user = cmd.getUser();
             user.setRole(UserService.ROLE_USER);
@@ -97,8 +104,6 @@ public class UserController {
             return "reg_form";
         }
     }
-
-
         private void addUserInSession (User user, HttpSession session){
             session.setAttribute("user", user);
             session.setAttribute("userid", user.getUserid());

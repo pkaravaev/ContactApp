@@ -9,10 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = "com.pkaravaev")
 public class SpringRootConfig   {
-
-
-    //TODO: Services , DAO, DATASOURCe, EMAIL SENDER or some other Buisness layer Beans
-
     @Bean
     public BasicDataSource getDataSource(){
 
