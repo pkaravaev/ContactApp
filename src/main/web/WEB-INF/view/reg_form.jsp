@@ -8,6 +8,21 @@
     <title>User Registration- Contact Application</title>
     <s:url var="url_css" value="../../static/css/style.css"/>
     <link href="${url_css}" rel="stylesheet" type="text/css">
+    <s:url value="/static/js/jquery-3.3.1.min.js" var="url_jqlib"/>
+    <script src="${url_jqlib}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#id_check_avail').click(function () {
+                $.ajax({
+                    url: 'check_avail',
+                    data: {username: $("#id_username").val()},
+                    success: function (data) {
+                        $("#id_res_div").html(data);
+                    }
+                });
+            });
+        });
+    </script>
 
 </head>
 
@@ -16,7 +31,6 @@
 <body background="${url_bg}">
 
 <table border="1" width="80%" align="center">
-
     <tr>
         <td height="100px">
             <jsp:include page="include/header.jsp"/>
@@ -58,7 +72,10 @@
                     </tr>
                     <tr>
                         <td>UserName</td>
-                        <td><f:input path="user.loginname"/></td>
+                        <td><f:input id="id_username" path="user.loginname"/>
+                            <button type="button" id="id_check_avail">Check Avalability</button>
+                            <div id="id_res_div" class="error"/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Password</td>
@@ -69,6 +86,7 @@
                             <button>Submit</button>
                         </td>
                     </tr>
+
                 </table>
             </f:form>
         </td>

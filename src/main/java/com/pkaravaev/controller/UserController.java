@@ -112,12 +112,22 @@ public class UserController {
     @RequestMapping(value = "/admin/change_status")
     @ResponseBody
     public String changeLoginStatus(@RequestParam Integer userId, @RequestParam Integer loginStatus) {
-        try{
+        try {
             userService.changeLoginStatus(userId, loginStatus);
             return "SUCCESS: Status Changed";
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: Unable to Change Status";
+        }
+    }
+
+    @RequestMapping(value = "/check_avail")
+    @ResponseBody
+    public String checkAvailability(@RequestParam String username) {
+        if (userService.isUserNameExist(username)) {
+            return "This username is already taken";
+        } else {
+            return "Yes! You can take this";
         }
     }
 }

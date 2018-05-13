@@ -65,7 +65,8 @@
                         <td colspan="2" align="right">
                             <button>Login</button>
                             <br>
-                            <a href="#">New User Registration</a>
+                            <s:url var="url_register" value="/reg_form"/>
+                            <a href="${url_register}">New User Registration</a>
                         </td>
                     </tr>
                 </table>

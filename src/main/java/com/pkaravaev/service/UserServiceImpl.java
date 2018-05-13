@@ -56,4 +56,16 @@ public class UserServiceImpl extends BaseDAO implements UserService {
         m.put("lst", loginStatus);
         getNamedParameterJdbcTemplate().update(sql, m);
     }
+
+    @Override
+    public Boolean isUserNameExist(String loginName) {
+        String sql = "SELECT count(loginName) FROM user WHERE loginName=?";
+        Integer count = getJdbcTemplate().queryForObject(sql, new String[]{loginName}, Integer.class);
+        if (count== 1){
+          return  true;
+        }
+        else {
+            return false;
+        }
+    }
 }
