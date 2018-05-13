@@ -18,12 +18,9 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     public void save(User u) {
-
         String sql = " INSERT INTO user (name, phone, email, address, loginName, password, role,  loginStatus)" +
                 "VALUES (:name, :phone, :email, :address, :loginName, :password, :role, :loginStatus)";
-
         Map m = new HashMap();
-
         m.put("name", u.getName());
         m.put("phone", u.getPhone());
         m.put("email", u.getEmail());
@@ -65,21 +62,18 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     public void delete(User u) {
-
         String sql = "DELETE FROM user WHERE userid=? ";
         getJdbcTemplate().update(sql, u.getUserid());
     }
 
     @Override
     public void delete(Integer userid) {
-
         String sql = "DELETE FROM user WHERE userid=? ";
         getJdbcTemplate().update(sql, userid);
     }
 
     @Override
     public User findById(Integer userid) {
-
         String sql = "SELECT userid, name, phone, email, address, loginName, role, loginStatus FROM user WHERE userid=?";
         User user = getJdbcTemplate().queryForObject(sql, new UserRowMapper(), userid);
         return user;
@@ -87,7 +81,6 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     public List<User> findAll() {
-
         String sql = "SELECT userid, name, phone, email, address, loginName, role, loginStatus FROM user";
         List<User> users = getJdbcTemplate().query(sql, new UserRowMapper());
         return users;
@@ -95,7 +88,6 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     public List<User> findByProperty(String propName, Object propValue) {
-
         String sql = "SELECT userid, name, phone, email, address, loginName, role, loginStatus " +
                 "FROM user WHERE " + propName+"=?";
         return getJdbcTemplate().query(sql, new UserRowMapper(), propValue);

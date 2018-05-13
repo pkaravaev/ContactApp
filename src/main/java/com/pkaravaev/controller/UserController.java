@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -104,10 +102,22 @@ public class UserController {
             return "reg_form";
         }
     }
-        private void addUserInSession (User user, HttpSession session){
-            session.setAttribute("user", user);
-            session.setAttribute("userid", user.getUserid());
-            session.setAttribute("role", user.getRole());
-        }
 
+    private void addUserInSession(User user, HttpSession session) {
+        session.setAttribute("user", user);
+        session.setAttribute("userid", user.getUserid());
+        session.setAttribute("role", user.getRole());
     }
+
+    @RequestMapping(value = "/change_status")
+    @ResponseBody
+    public String changeLoginStatus(@RequestParam Integer userId, @RequestParam Integer loginStatus) {
+        try{
+            userService.changeLoginStatus(userId, loginStatus);
+            return "SUCCESS: Status Changed";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "ERROR: Unable to Change Status";
+        }
+    }
+}

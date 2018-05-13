@@ -27,7 +27,6 @@ public class ContactController {
 
     @RequestMapping(value = "/user/save_contact")
     public String saveOrUpdate(@ModelAttribute("Command") Contact contact, HttpSession session, Model model) {
-
         Integer contactId = (Integer) session.getAttribute("aContactId");
         if (contactId == null) {
             //save
@@ -54,7 +53,6 @@ public class ContactController {
                 return "contact_form";
             }
         }
-
     }
 
     @RequestMapping(value = "/user/clist")

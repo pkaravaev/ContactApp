@@ -20,11 +20,8 @@ public class ContactDAOImpl extends BaseDAO implements ContactDAO {
 
     @Override
     public void save(Contact c) {
-
         String sql = "INSERT INTO contact (userid, name, phone, email, address, remark) VALUES ( :userid, :name, :phone, :email, :address, :remark)";
-
         Map m = new HashMap();
-
         m.put("userid", c.getUserid());
         m.put("name", c.getName());
         m.put("phone", c.getPhone());
@@ -42,7 +39,6 @@ public class ContactDAOImpl extends BaseDAO implements ContactDAO {
 
     @Override
     public void update(Contact c) {
-
         String sql = "UPDATE  contact SET  name=:name, phone=:phone, email=:email, address=:address, remark=:remark WHERE contactid=:contactid";
         Map m = new HashMap();
         m.put("contactid", c.getContactid());

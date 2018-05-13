@@ -78,8 +78,6 @@
                         <td align="center" colspan="8" class="error">No records Present</td>
                     </tr>
                     </c:if>
-
-
                     <c:forEach var="contact" items="${contactList}" varStatus="st">
                     <tr>
                         <td align="center"><input type="checkbox" name="cid" value="${contact.contactid}"></td>
