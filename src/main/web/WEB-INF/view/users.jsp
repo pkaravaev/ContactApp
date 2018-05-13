@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>User list- Contact Application</title>
-    <s:url var="url_css" value="../../static/css/style.css"/>
+    <s:url var="url_css" value="../../static/style.css"/>
     <link href="${url_css}" rel="stylesheet" type="text/css">
     <s:url value="/static/js/jquery-3.3.1.min.js" var="url_jqlib"/>
     <script src="${url_jqlib}"></script>
@@ -31,7 +31,7 @@
 
 </head>
 
-<s:url var="url_bg" value="/static/image/bg.jpg"/>
+<s:url var="url_bg" value="/static/bg.jpg"/>
 <body background="${url_bg}">
 <table border="1" width="80%" align="center">
 

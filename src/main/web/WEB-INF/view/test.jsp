@@ -12,16 +12,13 @@
     <title>Ajax</title>
     <s:url value="/static/js/jquery-3.3.1.min.js" var="url_jqlib"/>
     <script src="${url_jqlib}"></script>
-
     <script>
         $(document).ready(function () {
            // alert('jQuery is ready and integrated');
             $("#id_get_time").click(function () {
-
                 $.ajax({
                     url : '/test/get_time',
                     success : function (data) {
-
                         $("#id_time").html(data);
                     }
 
