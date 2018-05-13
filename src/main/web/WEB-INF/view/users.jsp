@@ -21,9 +21,10 @@
 
             $.ajax({
                 url: 'change_status',
-                data: {userId:uid, loginStatus:lstatus},
+                data: {userId: uid, loginStatus: lstatus},
                 success: function (data) {
                     alert(data);
+                }
             });
         }
     </script>

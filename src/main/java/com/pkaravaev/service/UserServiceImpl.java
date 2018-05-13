@@ -50,7 +50,7 @@ public class UserServiceImpl extends BaseDAO implements UserService {
 
     @Override
     public void changeLoginStatus(Integer userid, Integer loginStatus) {
-        String sql = "UPDATE user SET loginStatus=:lst WHERE userId=uid";
+        String sql = "UPDATE user SET loginStatus=:lst WHERE userId=:uid";
         Map m = new HashMap();
         m.put("uid", userid);
         m.put("lst", loginStatus);

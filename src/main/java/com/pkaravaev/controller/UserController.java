@@ -109,7 +109,7 @@ public class UserController {
         session.setAttribute("role", user.getRole());
     }
 
-    @RequestMapping(value = "/change_status")
+    @RequestMapping(value = "/admin/change_status")
     @ResponseBody
     public String changeLoginStatus(@RequestParam Integer userId, @RequestParam Integer loginStatus) {
         try{
